@@ -76,8 +76,7 @@ function block_gchat_get_online_users($user_id) {
 				FROM {user_enrolments} ue2 
 				WHERE ue1.enrolid = ue2.enrolid AND ue2.userid = ?
 			) AND
-			ue1.userid != ? AND
-			chat_users.status = 'online'
+			ue1.userid != ? 
 		$groupBy	
 		ORDER BY {user}.firstname, {user}.lastname";
 

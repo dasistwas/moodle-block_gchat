@@ -155,7 +155,7 @@ M.block_gchat = {
 
 			//If users list is empty
 			if(users.size() == 0) {
-
+				console.log('empty');
 				//If server sent at least one user
 				if(params.users.length > 0) {
 					usersList.setContent('');
@@ -179,7 +179,7 @@ M.block_gchat = {
 				}
 			}
 			else {
-
+				console.log('got in loop');
 				//Iterate list of new users
 				for(var i = 0; i < params.users.length; i++) {
 					var item_id = '#gchat_user_'+params.users[i].id;
@@ -194,6 +194,8 @@ M.block_gchat = {
 							otherNode = users.item(j);
 							item_class = parseInt(otherNode.ancestor().getAttribute('class').toString().charAt(1))? 0 : 1;
 							var other_name = otherNode.one('.name').one('p').getContent();
+							var other_status = otherNode.one('.status').one('span').getClass();
+							console.log(other_status);
 							compare = this.strcmp(user_name.toLowerCase(), other_name.toLowerCase());
 							j++;
 
@@ -202,6 +204,11 @@ M.block_gchat = {
 						//Create and insert user item on list
 						var item = this.create_user(Y, conn, params.users[i], item_class);
 						compare < 0? otherNode.insert(item, 'before') : otherNode.insert(item, 'after');
+					}
+
+					else {
+						var user = usersList.one(item_id);
+						user.one('.status').setHTML('<span class="online"></span>');
 					}
 				}
 			}
@@ -272,6 +279,7 @@ M.block_gchat = {
 	 * @param object params - the data sent by the server.
 	 */
 	remove_users_offline : function(Y, conn, params) {
+		console.log(params);
 		if(params.users) {
 			var usersList = Y.one('.block_'+this.name).one('.unlist');
 
@@ -281,14 +289,16 @@ M.block_gchat = {
 				// Check if user is in the list.
 				var user = usersList.one('#gchat_user_'+params.users[i].id);
 				if(user) {
-					user.remove(true); // Removes user.
+					//user.remove(true); // Removes user.
+					user.one('.status').setHTML('<span class="offline"></span>');
+
 				}
 			}
 
 			// If list is empty show empty message.
-			if(usersList.all('.user').size() == 0) {
+			/*if(usersList.all('.user').size() == 0) {
 				this.empty(Y, usersList);
-			}
+			}*/
 		}
 	},
 
