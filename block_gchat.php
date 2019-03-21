@@ -24,7 +24,7 @@ class block_gchat extends block_list {
 		
 		if (isloggedin() and !isguestuser()) {
 			
-			$this->title = get_string('pluginname', 'block_gchat');
+			$this->title = 'Chat';//get_string('pluginname', 'block_gchat');
 			
 			$this->content = new stdClass;
 			$this->content->icons = '';

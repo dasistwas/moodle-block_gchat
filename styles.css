@@ -51,7 +51,7 @@
 	font-weight: bold;
 	padding: 5px;
 	border-bottom-style: solid;
-	background-color: #2F922C; /*[[setting:chat_window_header_color]]*/
+	background-color: #0099d2; /*[[setting:chat_window_header_color]]*/
 }
 
 #gchat .chat_window.new_messages .header {
@@ -61,7 +61,7 @@
 #gchat .chat_window .header a {
 	font-size: 14px;
 	line-height: 20px;
-	color: #B0DDBA; /*[[setting:chat_window_text_color]]*/
+	color: white!important; /*[[setting:chat_window_text_color]]*/
 }
 
 #gchat .chat_window.new_messages .header a {
